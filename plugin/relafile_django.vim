@@ -1,3 +1,6 @@
+let g:relafile_landmark_files = ['models.py', 'templatetags', 'views.py']
+
+
 nnoremap \1 :call relafile#getfile ("models.py",'active','edit')<cr>
 nnoremap \2 :call relafile#getfile ("views.py",'active','edit')<cr>
 nnoremap \3 :call relafile#getfile ("urls.py",'active','edit')<cr>
