@@ -1,4 +1,4 @@
-let g:relafile_landmark_files = ['models.py', 'templatetags', 'views.py']
+let g:relafile_landmark_files = ['models.py', 'templatetags/__init__.py', 'views.py']
 
 
 nnoremap \1 :call relafile#getfile ("models.py",'active','edit')<cr>
@@ -9,8 +9,12 @@ nnoremap \5 :call relafile#getfile ("tests.py",'active','edit')<cr>
 nnoremap \6 :call relafile#getfile ( "templates" ,'active','edit')<cr>
 nnoremap \7 :call relafile#getfile ( "templatetags" ,'active','edit')<cr>
 nnoremap \8 :call relafile#getfile ( "management" ,'active','edit')<cr>
-nnoremap \0 :e settings.py<cr>
-nnoremap \9 :e urls.py<cr>
+
+py << EOF
+import os, vim
+vim.command("nnoremap \\0 :e %s.py<cr>" % os.environ['DJANGO_SETTINGS_MODULE'].replace('.','/'))
+vim.command("nnoremap \\9 :e %s.py<cr>" % os.environ['DJANGO_SETTINGS_MODULE'].replace('.','/').replace('settings','urls')) #TODO Flaky
+EOF
 nnoremap \`9 :call relafile#getfile("screen.py",'active','edit')<cr>
 nnoremap \`1 :call relafile#getfile ( "forms.py" ,'active','edit')<cr>
 nnoremap \`2 :call relafile#getfile ( "admin_views.py" ,'active','edit')<cr>
